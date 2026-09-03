@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syracuse University - "It's All Yours" Marketing Video Experience</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(247, 105, 0, 0.4); }
+      50% { box-shadow: 0 0 45px rgba(247, 105, 0, 0.85); }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomKenBurns {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .animate-slide-up {
+      animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .ken-burns {
+      animation: zoomKenBurns 18s ease-in-out infinite alternate;
+    }
+    .syr-orange-bg {
+      background-color: #F76900;
+    }
+    .syr-orange-text {
+      color: #F76900;
+    }
+    .syr-navy-bg {
+      background-color: #000E54;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(247, 105, 0, 0.4);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased p-3 md:p-6 custom-scrollbar">
+
+  <!-- Header Banner -->
+  <header class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-slate-800">
+    <div class="flex items-center gap-4">
+      <div class="bg-white p-2.5 rounded-lg shadow-md border border-orange-500/20">
+        <img src="https://assets.cdn.syr.edu/logos/syr_horizontal_1Line_orange.svg" alt="Syracuse University Logo" class="h-7 w-auto object-contain">
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-orange-500 animate-ping"></span>
+          <span class="text-xs uppercase tracking-widest text-orange-400 font-bold">Marketing Pitch & Video Concept</span>
+        </div>
+        <h1 class="text-xl md:text-2xl font-black tracking-tight text-white">Campaign: <span class="text-orange-500">"It's All Yours"</span></h1>
+      </div>
+    </div>
+
+    <!-- Header Actions & Mode Selector Tabs -->
+    <div class="flex flex-wrap items-center gap-3">
+      <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_marketing_video_package.zip" download="syracuse_marketing_video_package.zip" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-bold text-xs shadow-lg shadow-orange-600/30 flex items-center gap-1.5 transition">
+        <span>📦 Download All in One (.ZIP - 46.3 MB)</span>
+      </a>
+
+      <div class="flex bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs font-medium">
+        <button id="tabVideo" onclick="switchView('video')" class="px-3 py-1.5 rounded-lg bg-orange-600 text-white font-semibold shadow-sm transition">
+          🎬 Video Reel
+        </button>
+        <button id="tabAds" onclick="switchView('ads')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+          🎯 Clickable Ads & Links
+        </button>
+        <button id="tabScript" onclick="switchView('script')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+          📝 Script
+        </button>
+        <button id="tabProposal" onclick="switchView('proposal')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">
+          📊 Pitch Brief
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto mt-6">
+
+    <!-- VIEW 1: INTERACTIVE VIDEO EXPERIENCE -->
+    <section id="viewVideo" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Video Player Viewport (8 Cols) -->
+      <div class="lg:col-span-8 flex flex-col">
+        <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-800 group" id="playerWrapper">
+          
+          <!-- Background Rendered Commercial Promo Video (All Scenes Combined) -->
+          <video id="mainVideo" class="absolute inset-0 w-full h-full object-cover z-0" playsinline controls loop poster="https://static.cdn.syr.edu/static/www/original_images/hall-of-languages.jpg">
+            <source src="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_all_scenes_combined.mp4" type="video/mp4">
+          </video>
+
+          <!-- Fallback / Image Backdrop (Synchronized with scenes) -->
+          <div id="sceneBackdrop" class="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-700 opacity-0 z-0 pointer-events-none"></div>
+
+          <!-- Dynamic Cinematic Vignette & Branding Gradient -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-slate-950/40 to-black/60 z-10 pointer-events-none"></div>
+
+          <!-- Top Brand Watermark -->
+          <div class="absolute top-4 left-4 z-20 flex items-center gap-3">
+            <div class="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+              <span class="text-xs font-black tracking-wider text-orange-400 uppercase">SYRACUSE UNIVERSITY</span>
+            </div>
+            <div id="chapterPill" class="text-xs font-medium text-slate-300 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+              Scene 1: The Promise
+            </div>
+          </div>
+
+          <!-- Top Right Audio Control -->
+          <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+            <button id="narrationToggle" onclick="toggleNarration()" class="bg-black/70 hover:bg-orange-600 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs flex items-center gap-1.5 text-slate-200 transition">
+              <span id="voiceIcon">🔊</span>
+              <span id="voiceStatus">Voiceover: ON</span>
+            </button>
+            <button id="musicToggle" onclick="toggleBGM()" class="bg-black/70 hover:bg-orange-600 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-xs flex items-center gap-1.5 text-slate-200 transition">
+              <span id="musicIcon">🎵</span>
+              <span id="musicStatus">Music: ON</span>
+            </button>
+          </div>
+
+          <!-- Center Animated Kinetic Overlay & Subtitles -->
+          <div class="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-8 pointer-events-none">
+            <div id="motionCard" class="max-w-2xl transform transition-all duration-500">
+              
+              <!-- Stat Tag (if applicable) -->
+              <div id="badgeContainer" class="mb-3 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/90 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg">
+                <span id="badgeIcon">🔥</span>
+                <span id="badgeText">Top-Ranked Education</span>
+              </div>
+
+              <!-- Main Kinetic Headline -->
+              <h2 id="kineticTitle" class="text-2xl md:text-4xl font-black text-white leading-tight tracking-tight drop-shadow-lg">
+                It's all <span class="text-orange-500 underline decoration-orange-500/50">yours.</span>
+              </h2>
+
+              <!-- Sub-headline / Copy -->
+              <p id="kineticSub" class="text-sm md:text-base text-slate-200 mt-2 line-clamp-2 leading-relaxed drop-shadow-md font-medium">
+                Top-ranked academics. Transformative experiences. Lifelong connections.
+              </p>
+
+              <!-- Secondary Highlight Pill -->
+              <div id="statCallout" class="mt-3 flex items-center gap-3 text-xs md:text-sm text-orange-300 font-semibold">
+                <span class="bg-slate-900/90 px-3 py-1 rounded-md border border-orange-500/30 backdrop-blur-md">
+                  13 Schools & Colleges • 200+ Majors
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Big Play/Pause Button on Hover / Click -->
+          <button id="bigPlayBtn" onclick="togglePlay()" class="absolute inset-0 m-auto w-16 h-16 rounded-full bg-orange-500/90 hover:bg-orange-500 hover:scale-110 text-white flex items-center justify-center text-2xl shadow-2xl z-30 transition cursor-pointer backdrop-blur-sm">
+            ▶
+          </button>
+
+          <!-- Timeline Scrubber & Player Controls Bar -->
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/80 to-transparent p-3 pt-6 z-30 opacity-95 transition-opacity">
+            <!-- Progress Bar -->
+            <div class="relative w-full h-2 bg-slate-800 rounded-full overflow-hidden cursor-pointer mb-2.5" onclick="seekByClick(event)" id="progressBarContainer">
+              <div id="progressBar" class="h-full bg-gradient-to-r from-orange-600 via-orange-500 to-amber-400 w-0 transition-all duration-100"></div>
+            </div>
+
+            <!-- Controls row -->
+            <div class="flex items-center justify-between text-xs text-slate-300">
+              <div class="flex items-center gap-3">
+                <button onclick="togglePlay()" id="playPauseBtn" class="p-1.5 hover:text-orange-400 transition font-bold text-sm">
+                  ▶ Play
+                </button>
+                <button onclick="restartVideo()" class="p-1.5 hover:text-orange-400 transition">
+                  🔄 Restart
+                </button>
+                <span id="timeDisplay" class="font-mono text-slate-400">00:00 / 01:00</span>
+              </div>
+
+              <!-- Fast Scene Jump buttons -->
+              <div class="flex items-center gap-1.5">
+                <span class="text-[10px] uppercase text-slate-400 font-semibold mr-1">Scene:</span>
+                <button onclick="jumpToScene(0)" class="scene-btn px-2 py-0.5 rounded bg-orange-500 text-white text-[11px] font-bold">1</button>
+                <button onclick="jumpToScene(1)" class="scene-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-bold hover:bg-slate-700">2</button>
+                <button onclick="jumpToScene(2)" class="scene-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-bold hover:bg-slate-700">3</button>
+                <button onclick="jumpToScene(3)" class="scene-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-bold hover:bg-slate-700">4</button>
+                <button onclick="jumpToScene(4)" class="scene-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-bold hover:bg-slate-700">5</button>
+                <button onclick="jumpToScene(5)" class="scene-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[11px] font-bold hover:bg-slate-700">6</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Video Caption / Quick Info Callout -->
+        <div class="mt-4 p-4 rounded-xl bg-slate-900/70 border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+          <div>
+            <span class="text-xs text-orange-400 font-bold uppercase tracking-wider">Live Marketing Audio & Visuals</span>
+            <p class="text-xs text-slate-300 mt-0.5">
+              Featuring verified Syracuse brand assets, real Kaltura CDN footage, dynamic text transitions, and synthesized voiceover.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_all_scenes_combined.mp4" download="syracuse_all_scenes_combined.mp4" class="px-3.5 py-2 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-orange-600/30">
+              <span>📥 Download Combined Video MP4 (22.7 MB)</span>
+            </a>
+            <a href="https://www.syracuse.edu/admissions-aid/application-process/apply/" target="_blank" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition flex items-center gap-1.5 border border-slate-700">
+              <span>Apply Now</span> ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Storyboard Scene Timeline (4 Cols) -->
+      <div class="lg:col-span-4 flex flex-col gap-3">
+        <div class="flex items-center justify-between pb-1">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-300">Video Scene Breakdown</h3>
+          <span class="text-xs text-orange-400 font-mono">60s Total Cut</span>
+        </div>
+
+        <div class="space-y-2.5 overflow-y-auto max-h-[530px] pr-1 custom-scrollbar" id="sceneList">
+          
+          <!-- Scene 1 Card -->
+          <div id="sceneCard0" onclick="jumpToScene(0)" class="scene-card p-3 rounded-xl bg-slate-900 border-2 border-orange-500 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-orange-400">01 • THE HOOK</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene1_the_hook.mp4" download="syracuse_scene1_the_hook.mp4" class="px-2 py-0.5 rounded bg-orange-600 hover:bg-orange-500 text-white font-bold text-[10px] shadow" onclick="event.stopPropagation()">📥 Download (10.4MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">"It's All Yours"</div>
+            <p class="text-xs text-slate-400 mt-0.5">Hall of Languages aerials & the transformative promise.</p>
+          </div>
+
+          <!-- Scene 2 Card -->
+          <div id="sceneCard1" onclick="jumpToScene(1)" class="scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-400">02 • ACADEMIC RIGOR</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene2_academics.mp4" download="syracuse_scene2_academics.mp4" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-orange-600 text-slate-300 hover:text-white font-bold text-[10px] border border-slate-700" onclick="event.stopPropagation()">📥 Download (2.3MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">Find Your Program</div>
+            <p class="text-xs text-slate-400 mt-0.5">13 schools, 200+ majors & hands-on faculty research.</p>
+          </div>
+
+          <!-- Scene 3 Card -->
+          <div id="sceneCard2" onclick="jumpToScene(2)" class="scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-400">03 • ORANGE WORKS</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene3_orange_works_stem.mp4" download="syracuse_scene3_orange_works_stem.mp4" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-orange-600 text-slate-300 hover:text-white font-bold text-[10px] border border-slate-700" onclick="event.stopPropagation()">📥 Download (2.6MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">Next-Gen Engineering & AI</div>
+            <p class="text-xs text-slate-400 mt-0.5">Drones, rovers, and cutting-edge STEM pipelines.</p>
+          </div>
+
+          <!-- Scene 4 Card -->
+          <div id="sceneCard3" onclick="jumpToScene(3)" class="scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-400">04 • GLOBAL & ACCESSIBLE</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene4_global_and_aid.mp4" download="syracuse_scene4_global_and_aid.mp4" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-orange-600 text-slate-300 hover:text-white font-bold text-[10px] border border-slate-700" onclick="event.stopPropagation()">📥 Download (3.6MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">#10 Study Abroad & $571M Aid</div>
+            <p class="text-xs text-slate-400 mt-0.5">82% receive aid; world-class global semesters.</p>
+          </div>
+
+          <!-- Scene 5 Card -->
+          <div id="sceneCard4" onclick="jumpToScene(4)" class="scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-400">05 • CAMPUS LIFE & SPIRIT</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene5_athletics_and_spirit.mp4" download="syracuse_scene5_athletics_and_spirit.mp4" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-orange-600 text-slate-300 hover:text-white font-bold text-[10px] border border-slate-700" onclick="event.stopPropagation()">📥 Download (4.7MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">All for One, All for Orange</div>
+            <p class="text-xs text-slate-400 mt-0.5">ACC Division I roar & Barnes Center wellness.</p>
+          </div>
+
+          <!-- Scene 6 Card -->
+          <div id="sceneCard5" onclick="jumpToScene(5)" class="scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-400">06 • CALL TO ACTION</span>
+              <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene6_apply_cta.mp4" download="syracuse_scene6_apply_cta.mp4" class="px-2 py-0.5 rounded bg-orange-600 hover:bg-orange-500 text-white font-bold text-[10px] shadow" onclick="event.stopPropagation()">📥 Download (0.3MB)</a>
+            </div>
+            <div class="font-bold text-white text-sm mt-1">Applications Are Open</div>
+            <p class="text-xs text-slate-400 mt-0.5">Realize your ambitions. Syracuse.edu</p>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW: CLICKABLE DIGITAL ADS & DESTINATIONS -->
+    <section id="viewAds" class="hidden space-y-6">
+      
+      <!-- Master Download Banner -->
+      <div class="p-6 rounded-2xl bg-gradient-to-r from-orange-950/80 via-slate-900 to-slate-900 border-2 border-orange-500/50 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-600/30 text-orange-400 font-bold text-xs border border-orange-500/30 uppercase tracking-wider">
+            All-In-One Distribution Package
+          </span>
+          <h2 class="text-xl md:text-2xl font-black text-white mt-1.5">Download All Videos, Ads, Scripts & Assets</h2>
+          <p class="text-xs text-slate-300 mt-1">Includes the 1080p Master Commercial, all 6 individual scene clips, the interactive player, and full director's proposal.</p>
+        </div>
+        <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_marketing_video_package.zip" download="syracuse_marketing_video_package.zip" class="px-5 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-black text-sm shadow-xl shadow-orange-600/40 transition flex items-center gap-2 whitespace-nowrap">
+          <span>📦 Download Complete Bundle (.ZIP - 46.3 MB)</span>
+        </a>
+      </div>
+
+      <!-- Grid of Clickable Ads with Live Syracuse Destination Links -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Ad Card 1 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500/50 transition shadow-lg">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-orange-950 text-orange-400 font-bold border border-orange-800/40">AD 01 • BRAND HOOK</span>
+              <span class="text-slate-500 font-mono text-[11px]">10.4 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">"It's All Yours"</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Top-ranked academics. Transformative experiences. Lifelong connections.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://www.syracuse.edu/admissions-aid/application-process/apply/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center justify-between">
+              <span>Apply Now</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Visit Syracuse.edu</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene1_the_hook.mp4" download="syracuse_scene1_the_hook.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 1 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+        <!-- Ad Card 2 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500/50 transition shadow-lg">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-blue-950 text-blue-400 font-bold border border-blue-800/40">AD 02 • ACADEMICS</span>
+              <span class="text-slate-500 font-mono text-[11px]">2.3 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">13 Colleges • 200+ Majors</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Search undergraduate, graduate, online, and certificate programs across 15 career paths.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://www.syracuse.edu/academics/programs/?level=undergraduate" target="_blank" class="w-full py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center justify-between">
+              <span>Undergraduate Majors</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/academics/programs/?level=graduate" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Graduate Programs</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene2_academics.mp4" download="syracuse_scene2_academics.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 2 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+        <!-- Ad Card 3 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500/50 transition shadow-lg">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-950 text-amber-400 font-bold border border-amber-800/40">AD 03 • INNOVATION</span>
+              <span class="text-slate-500 font-mono text-[11px]">2.6 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">Orange Works STEM & AI</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Developing real pipelines in drones, rovers, and cutting-edge robotics engineering.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://news.syr.edu/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center justify-between">
+              <span>Orange Works News</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/academics/schools-colleges/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Schools & Colleges</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene3_orange_works_stem.mp4" download="syracuse_scene3_orange_works_stem.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 3 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+        <!-- Ad Card 4 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500/50 transition shadow-lg">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-400 font-bold border border-emerald-800/40">AD 04 • ACCESS & GLOBAL</span>
+              <span class="text-slate-500 font-mono text-[11px]">3.6 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">#10 Study Abroad • $571M Aid</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">82% of students receive financial support totaling over $571 million.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://www.syracuse.edu/admissions-aid/financial-aid-scholarships/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center justify-between">
+              <span>Financial Aid & Scholarships</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/academics/study-abroad-away/study-abroad/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Explore Study Abroad</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene4_global_and_aid.mp4" download="syracuse_scene4_global_and_aid.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 4 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+        <!-- Ad Card 5 -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 flex flex-col justify-between hover:border-orange-500/50 transition shadow-lg">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-purple-950 text-purple-400 font-bold border border-purple-800/40">AD 05 • ATHLETICS & LIFE</span>
+              <span class="text-slate-500 font-mono text-[11px]">4.7 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">All for One, All for Orange</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">ACC Division I roar, 300+ student clubs, and Barnes Center integrated wellness.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://www.syracuse.edu/campus-life/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs transition flex items-center justify-between">
+              <span>Explore Campus Life</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/campus-life/clubs-organizations/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Student Organizations (300+)</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene5_athletics_and_spirit.mp4" download="syracuse_scene5_athletics_and_spirit.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 5 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+        <!-- Ad Card 6 -->
+        <div class="bg-slate-900 border-2 border-orange-500/80 rounded-2xl p-5 flex flex-col justify-between shadow-xl shadow-orange-500/10">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-orange-600 text-white font-bold">AD 06 • CONVERSION CTA</span>
+              <span class="text-orange-400 font-mono text-[11px]">0.3 MB</span>
+            </div>
+            <h3 class="text-base font-black text-white">Applications Are Open!</h3>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Pursue your passions, develop your skills, and realize your ambitions.</p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-800 space-y-2">
+            <a href="https://www.syracuse.edu/admissions-aid/application-process/apply/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white font-black text-xs transition flex items-center justify-between shadow-lg shadow-orange-600/30">
+              <span>Start Application (syracuse.edu/apply)</span> ↗
+            </a>
+            <a href="https://www.syracuse.edu/about/contact/" target="_blank" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-xs transition flex items-center justify-between border border-slate-700">
+              <span>Contact Admissions</span> ↗
+            </a>
+            <a href="file:///C:/Users/Admin/.gemini/antigravity/brain/77c6bf42-788b-4cd3-9333-e5521827ba80/syracuse_scene6_apply_cta.mp4" download="syracuse_scene6_apply_cta.mp4" class="w-full py-1.5 px-3 rounded-lg bg-slate-950 hover:bg-slate-850 text-orange-400 font-semibold text-[11px] transition flex items-center justify-center gap-1.5 border border-slate-800">
+              📥 Download Scene 6 Video (MP4)
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- VIEW 2: DIRECTOR'S SCRIPT & PRODUCTION SPECS -->
+    <section id="viewScript" class="hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <span class="text-xs uppercase font-bold text-orange-400 tracking-wider">Production Blueprint</span>
+            <h2 class="text-2xl font-black text-white mt-0.5">60-Second Flagship Video Script</h2>
+          </div>
+          <div class="flex gap-2">
+            <span class="px-3 py-1 rounded bg-slate-800 text-slate-300 text-xs font-mono">Aspect: 16:9 & 9:16</span>
+            <span class="px-3 py-1 rounded bg-orange-600/30 text-orange-400 text-xs font-mono border border-orange-500/30">Pacing: Upbeat & Inspiring</span>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-4">
+          
+          <!-- Scene 1 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:00 - 00:10</span>
+              <div class="text-sm font-bold text-white">Scene 1: The Hook</div>
+              <span class="text-[11px] text-slate-400">Tempo: Atmospheric</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Cinematic golden-hour sweep over the Hall of Languages and Syracuse campus quad. Transition into dynamic fast cuts of energized students walking into class.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "Here, an education amounts to more than just what you get. It is who you become. It's all yours."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"It's all yours." // Syracuse University</code></p>
+            </div>
+          </div>
+
+          <!-- Scene 2 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:10 - 00:20</span>
+              <div class="text-sm font-bold text-white">Scene 2: Academic Power</div>
+              <span class="text-[11px] text-slate-400">Tempo: Accelerating</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Professor Marciano collaborating with students in the Forensics Lab; fast pans across Architecture studio sketches, Communications broadcast set, and AI computer terminals.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "Thirteen schools and colleges. Over two hundred majors. Whatever your passion, find your path across science, arts, engineering, business, and beyond."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"13 Schools & Colleges • 200+ Majors & Minors"</code></p>
+            </div>
+          </div>
+
+          <!-- Scene 3 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:20 - 00:30</span>
+              <div class="text-sm font-bold text-white">Scene 3: Orange Works</div>
+              <span class="text-[11px] text-slate-400">Tempo: High Energy</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Chancellor Mike Haynie inspects autonomous drones and rovers built by student engineers. High-tech testing bench and rapid mechanical prototyping.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "Through Orange Works, we're building the future—powering hands-on breakthroughs with drones, rovers, and next-generation robotics from day one."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"Orange Works • Fuels the Next Generation"</code></p>
+            </div>
+          </div>
+
+          <!-- Scene 4 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:30 - 00:40</span>
+              <div class="text-sm font-bold text-white">Scene 4: Global & Access</div>
+              <span class="text-[11px] text-slate-400">Tempo: Triumphant</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Split-screen of Syracuse students studying in Florence, London, and Tokyo, followed by bold typographic kinetic counters for financial support.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "Ranked top 10 in the nation for Study Abroad. And with eighty-two percent of students receiving over five hundred and seventy million dollars in financial support, world-class opportunity is within your reach."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"#10 Study Abroad // 82% Students Receive Aid ($571M+)"</code></p>
+            </div>
+          </div>
+
+          <!-- Scene 5 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:40 - 00:50</span>
+              <div class="text-sm font-bold text-white">Scene 5: Spirit & Life</div>
+              <span class="text-[11px] text-slate-400">Tempo: Peak Climax</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Electric energy inside the JMA Wireless Dome with cheerleaders running flags; cutting to the Barnes Center at The Arch with rock climbing, esports lounge, and student clubs.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "All for one, all for Orange. Feel the roar of ACC athletics, explore over three hundred clubs, and thrive in an integrated wellness community built for you."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"All for One, All for Orange • 300+ Clubs & Organizations"</code></p>
+            </div>
+          </div>
+
+          <!-- Scene 6 Script -->
+          <div class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 flex flex-col md:flex-row gap-4">
+            <div class="md:w-36 flex-shrink-0">
+              <span class="text-xs font-bold text-orange-400">00:50 - 01:00</span>
+              <div class="text-sm font-bold text-white">Scene 6: Call To Action</div>
+              <span class="text-[11px] text-slate-400">Tempo: Bold Finish</span>
+            </div>
+            <div class="flex-1 space-y-1.5 text-xs">
+              <p><strong class="text-slate-300">Visual:</strong> Full-screen high-definition Syracuse Orange logo lockup with clean web URL and button call-to-action against an energetic campus backdrop.</p>
+              <p><strong class="text-orange-400">Voiceover:</strong> "Applications are now open. Realize your ambitions. Apply today at syracuse.edu."</p>
+              <p><strong class="text-blue-400">On-Screen Graphics:</strong> <code class="text-orange-300 font-mono">"APPLICATIONS ARE OPEN • syracuse.edu/apply"</code></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VIEW 3: MARKETING TEAM PROPOSAL & STRATEGY -->
+    <section id="viewProposal" class="hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Column 1: Core Strategy -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-orange-600/20 text-orange-400 text-base">🎯</span>
+            <h3 class="text-base font-black text-white">Campaign Rationale</h3>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Derived 100% from the official Syracuse.edu positioning. This video answers the prospective student's primary psychological question: <em class="text-orange-400">"What will I become here?"</em>
+          </p>
+          <ul class="text-xs text-slate-400 space-y-2">
+            <li class="flex items-start gap-2">
+              <span class="text-orange-500 font-bold">✓</span>
+              <span><strong>Emotional Hook:</strong> Leverages the core homepage hero message "It's All Yours".</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-orange-500 font-bold">✓</span>
+              <span><strong>Proof Points:</strong> Highlights $571M+ financial aid to lower cost resistance.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-orange-500 font-bold">✓</span>
+              <span><strong>Prestige Factor:</strong> Amplifies #10 Study Abroad ranking and ACC D1 spirit.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Multi-Platform Cutdown Matrix -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-blue-600/20 text-blue-400 text-base">📱</span>
+            <h3 class="text-base font-black text-white">Social Cutdowns</h3>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+              <div class="flex justify-between font-bold text-white mb-1">
+                <span>30s Recruitment Cut</span>
+                <span class="text-orange-400 font-mono">YouTube & TV</span>
+              </div>
+              <p class="text-slate-400 text-[11px]">Condensed Scenes 1, 2, 4, 6 focusing on top majors & financial accessibility.</p>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+              <div class="flex justify-between font-bold text-white mb-1">
+                <span>15s TikTok / Reels Ad</span>
+                <span class="text-blue-400 font-mono">Vertical 9:16</span>
+              </div>
+              <p class="text-slate-400 text-[11px]">High-tempo beat drop on Dome cheerleaders & drone testing with immediate "Apply Now" sticker.</p>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800">
+              <div class="flex justify-between font-bold text-white mb-1">
+                <span>6s Bumper Ad</span>
+                <span class="text-amber-400 font-mono">High Frequency</span>
+              </div>
+              <p class="text-slate-400 text-[11px]">"It's all yours. Applications are open at Syracuse.edu."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Pitch Email to Marketing Team -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="p-2 rounded-lg bg-emerald-600/20 text-emerald-400 text-base">✉️</span>
+            <h3 class="text-base font-black text-white">Ready-to-Send Email</h3>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-300 leading-relaxed max-h-48 overflow-y-auto custom-scrollbar">
+            <p><strong>Subject:</strong> Creative Concept & Video Pitch: Syracuse "It's All Yours" Campaign</p>
+            <p class="mt-2 text-slate-400">Hi Syracuse Marketing Team,</p>
+            <p class="mt-1 text-slate-400">I developed an interactive 60-second marketing video concept crafted directly from your flagship digital messaging at syracuse.edu.</p>
+            <p class="mt-1 text-slate-400">It highlights Syracuse's 13 colleges, $571M+ financial aid support, #10 Study Abroad ranking, and Orange Works innovation.</p>
+            <p class="mt-2 text-orange-400">Check out the interactive reel and full script attached!</p>
+          </div>
+          <button onclick="copyPitchEmail()" id="copyBtn" class="w-full py-2 rounded-lg bg-slate-800 hover:bg-orange-600 text-white text-xs font-bold transition flex items-center justify-center gap-2">
+            📋 Copy Pitch Email
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // SCENE CONFIGURATION (Extracted 100% from https://www.syracuse.edu/)
+    const scenes = [
+      {
+        id: 0,
+        title: "It's all yours.",
+        sub: "Top-ranked academics. Transformative experiences. Lifelong connections. Here, an education is who you become.",
+        tag: "Identity & Vision",
+        icon: "🍊",
+        stat: "Founded 1870 • Heart of New York State",
+        startTime: 0,
+        endTime: 10,
+        videoSeek: 0,
+        chapter: "Scene 1: The Promise",
+        backdrop: "https://static.cdn.syr.edu/static/www/original_images/hall-of-languages.jpg",
+        scriptVoice: "Here, an education amounts to more than just what you get. It is who you become. It's all yours."
+      },
+      {
+        id: 1,
+        title: "Find Your Program",
+        sub: "Thirteen distinct schools and colleges. Over 200 majors and minors tailored to your ambitions.",
+        tag: "Academic Rigor",
+        icon: "🔬",
+        stat: "13 Colleges • 200+ Majors & Minors • 15 Career Paths",
+        startTime: 10,
+        endTime: 20,
+        videoSeek: 8,
+        chapter: "Scene 2: Academic Excellence",
+        backdrop: "https://www.syracuse.edu/images/YKomfgbjLkCgmggKMfx1T2cBcNc=/6802/width-1100/ANR_2025ForensicsLab_00055_crop.jpg",
+        scriptVoice: "Thirteen schools and colleges. Over two hundred majors. Whatever your passion, find your path across science, arts, engineering, and beyond."
+      },
+      {
+        id: 2,
+        title: "Orange Works Innovation",
+        sub: "Fuels the next generation of engineers. Drones, rovers, and robotics developed from day one.",
+        tag: "High-Tech Breakthroughs",
+        icon: "⚡",
+        stat: "Robotics • Engineering • Hands-on STEM Pipelines",
+        startTime: 20,
+        endTime: 30,
+        videoSeek: 16,
+        chapter: "Scene 3: Orange Works STEM",
+        backdrop: "https://static.cdn.syr.edu/static/www/images/Orange-Works-Drone-Chancellor-CM.width-1300.format-webp.webp",
+        scriptVoice: "Through Orange Works, we're building the future—powering hands-on breakthroughs with drones, rovers, and next-generation robotics."
+      },
+      {
+        id: 3,
+        title: "Ranked #10 & $571M in Aid",
+        sub: "Ranked #10 for Study Abroad by U.S. News. 82% of students receive financial support totaling over $571M.",
+        tag: "Global Opportunity & Access",
+        icon: "🌍",
+        stat: "#10 Study Abroad in US • 82% Financial Aid Coverage",
+        startTime: 30,
+        endTime: 40,
+        videoSeek: 24,
+        chapter: "Scene 4: Global Reach & Affordability",
+        backdrop: "https://static.cdn.syr.edu/static/www/images/FooterImageV3.width-2600.format-webp.webp",
+        scriptVoice: "Ranked top ten in the nation for Study Abroad. And with eighty-two percent of students receiving financial support totaling over five hundred and seventy million dollars."
+      },
+      {
+        id: 4,
+        title: "All for One, All for Orange",
+        sub: "NCAA Division I athletics in the ACC, plus integrated wellness and 300+ student organizations.",
+        tag: "Undeniable Spirit",
+        icon: "🏆",
+        stat: "ACC Division I Athletics • Barnes Center at The Arch • 300+ Clubs",
+        startTime: 40,
+        endTime: 50,
+        videoSeek: 32,
+        chapter: "Scene 5: Spirit & Campus Life",
+        backdrop: "https://www.syracuse.edu/images/Vig5B0iBSqHQR6mD5f5lT_HkEHI=/5388/width-1100/ANR_2024SUvsOhioFootballGame_00329_1_P86Nb2M.jpg",
+        scriptVoice: "All for one, all for Orange. Feel the roar of ACC athletics, explore three hundred clubs, and thrive in an integrated wellness community."
+      },
+      {
+        id: 5,
+        title: "Applications Are Open",
+        sub: "Realize your ambitions at Syracuse University. Start your journey today at syracuse.edu.",
+        tag: "Take The Next Step",
+        icon: "🚀",
+        stat: "syracuse.edu/apply • Admissions & Aid",
+        startTime: 50,
+        endTime: 60,
+        videoSeek: 40,
+        chapter: "Scene 6: Apply Today",
+        backdrop: "https://static.cdn.syr.edu/static/www/images/MEH_FallCareerAndInternshipFair_.width-1300.format-webp_u6d84bA.webp",
+        scriptVoice: "Applications are now open. Realize your ambitions. Apply today at syracuse.edu."
+      }
+    ];
+
+    let currentSceneIdx = 0;
+    let isPlaying = false;
+    let isNarrationOn = true;
+    let isBgmOn = true;
+    let currentTime = 0; // in seconds (0 to 60)
+    let playbackInterval = null;
+    let audioContext = null;
+    let bgmOsc = null;
+
+    const mainVideo = document.getElementById('mainVideo');
+    const sceneBackdrop = document.getElementById('sceneBackdrop');
+    const kineticTitle = document.getElementById('kineticTitle');
+    const kineticSub = document.getElementById('kineticSub');
+    const badgeText = document.getElementById('badgeText');
+    const badgeIcon = document.getElementById('badgeIcon');
+    const statCallout = document.getElementById('statCallout');
+    const chapterPill = document.getElementById('chapterPill');
+    const progressBar = document.getElementById('progressBar');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const bigPlayBtn = document.getElementById('bigPlayBtn');
+
+    // Speech synthesis for Voiceover Narration
+    function speakNarration(text) {
+      if (!isNarrationOn || !('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.05;
+      utterance.pitch = 1.02;
+      const voices = window.speechSynthesis.getVoices();
+      const preferred = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Samantha')));
+      if (preferred) utterance.voice = preferred;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Web Audio Synthesized Cinematic Ambient Soundtrack
+    function initBGM() {
+      if (audioContext) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContext();
+      } catch (e) {}
+    }
+
+    function playCinematicChord() {
+      if (!isBgmOn || !audioContext) return;
+      if (audioContext.state === 'suspended') audioContext.resume();
+      
+      const now = audioContext.currentTime;
+      const notes = [220, 277.18, 329.63, 440]; // A Major cinematic chord
+      notes.forEach((freq, idx) => {
+        const osc = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        osc.type = idx % 2 === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq * (1 + (currentSceneIdx * 0.1)), now);
+        
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.exponentialRampToValueAtTime(0.035, now + 0.8);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 7.5);
+
+        osc.connect(gain);
+        gain.connect(audioContext.destination);
+        osc.start(now);
+        osc.stop(now + 8);
+      });
+    }
+
+    function renderScene(idx, triggerSpeech = true) {
+      currentSceneIdx = idx;
+      const s = scenes[idx];
+
+      // Update Kinetic Typography
+      kineticTitle.innerHTML = s.title.replace('yours', '<span class="text-orange-500 underline decoration-orange-500/50">yours</span>');
+      kineticSub.textContent = s.sub;
+      badgeText.textContent = s.tag;
+      badgeIcon.textContent = s.icon;
+      statCallout.innerHTML = `<span class="bg-slate-900/90 px-3 py-1 rounded-md border border-orange-500/30 backdrop-blur-md">${s.stat}</span>`;
+      chapterPill.textContent = s.chapter;
+
+      // Update Scene Card Styling
+      for (let i = 0; i < scenes.length; i++) {
+        const card = document.getElementById(`sceneCard${i}`);
+        if (card) {
+          if (i === idx) {
+            card.className = "scene-card p-3 rounded-xl bg-slate-900 border-2 border-orange-500 cursor-pointer transition hover:bg-slate-850 shadow-lg shadow-orange-500/10";
+          } else {
+            card.className = "scene-card p-3 rounded-xl bg-slate-900/60 border border-slate-800 cursor-pointer transition hover:bg-slate-850";
+          }
+        }
+      }
+
+      // Update Backdrop image smoothly if video is paused/buffering
+      if (s.backdrop) {
+        sceneBackdrop.style.backgroundImage = `url('${s.backdrop}')`;
+      }
+
+      // Trigger audio & speech
+      if (triggerSpeech && isPlaying) {
+        speakNarration(s.scriptVoice);
+        playCinematicChord();
+      }
+    }
+
+    function updateTick() {
+      if (!isPlaying) return;
+      currentTime += 0.2;
+      if (currentTime >= 60) {
+        currentTime = 60;
+        togglePlay(false);
+        return;
+      }
+
+      // Progress bar & Time display
+      const percent = (currentTime / 60) * 100;
+      progressBar.style.width = `${percent}%`;
+      const mins = Math.floor(currentTime / 60).toString().padStart(2, '0');
+      const secs = Math.floor(currentTime % 60).toString().padStart(2, '0');
+      timeDisplay.textContent = `${mins}:${secs} / 01:00`;
+
+      // Check scene index transition
+      const targetScene = scenes.findIndex(s => currentTime >= s.startTime && currentTime < s.endTime);
+      if (targetScene !== -1 && targetScene !== currentSceneIdx) {
+        renderScene(targetScene, true);
+      }
+    }
+
+    function togglePlay(forceState = null) {
+      isPlaying = forceState !== null ? forceState : !isPlaying;
+      initBGM();
+
+      if (isPlaying) {
+        playPauseBtn.textContent = "⏸ Pause";
+        bigPlayBtn.classList.add('opacity-0', 'pointer-events-none');
+        mainVideo.play().catch(() => {});
+        renderScene(currentSceneIdx, true);
+        if (playbackInterval) clearInterval(playbackInterval);
+        playbackInterval = setInterval(updateTick, 200);
+      } else {
+        playPauseBtn.textContent = "▶ Play";
+        bigPlayBtn.classList.remove('opacity-0', 'pointer-events-none');
+        mainVideo.pause();
+        if (playbackInterval) clearInterval(playbackInterval);
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+    }
+
+    function restartVideo() {
+      currentTime = 0;
+      jumpToScene(0);
+      togglePlay(true);
+    }
+
+    function jumpToScene(idx) {
+      initBGM();
+      currentSceneIdx = idx;
+      currentTime = scenes[idx].startTime;
+      
+      const percent = (currentTime / 60) * 100;
+      progressBar.style.width = `${percent}%`;
+      const mins = Math.floor(currentTime / 60).toString().padStart(2, '0');
+      const secs = Math.floor(currentTime % 60).toString().padStart(2, '0');
+      timeDisplay.textContent = `${mins}:${secs} / 01:00`;
+
+      renderScene(idx, isPlaying);
+      if (mainVideo && scenes[idx].videoSeek !== undefined) {
+        mainVideo.currentTime = scenes[idx].videoSeek;
+      }
+    }
+
+    function seekByClick(e) {
+      const rect = document.getElementById('progressBarContainer').getBoundingClientRect();
+      const pos = (e.clientX - rect.left) / rect.width;
+      currentTime = Math.max(0, Math.min(60, pos * 60));
+      const targetScene = scenes.findIndex(s => currentTime >= s.startTime && currentTime < s.endTime);
+      if (targetScene !== -1) {
+        jumpToScene(targetScene);
+      }
+    }
+
+    function toggleNarration() {
+      isNarrationOn = !isNarrationOn;
+      document.getElementById('voiceStatus').textContent = `Voiceover: ${isNarrationOn ? 'ON' : 'OFF'}`;
+      document.getElementById('voiceIcon').textContent = isNarrationOn ? '🔊' : '🔇';
+      if (!isNarrationOn && 'speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      } else if (isNarrationOn && isPlaying) {
+        speakNarration(scenes[currentSceneIdx].scriptVoice);
+      }
+    }
+
+    function toggleBGM() {
+      isBgmOn = !isBgmOn;
+      document.getElementById('musicStatus').textContent = `Music: ${isBgmOn ? 'ON' : 'OFF'}`;
+      document.getElementById('musicIcon').textContent = isBgmOn ? '🎵' : '🔇';
+      if (isBgmOn && isPlaying) {
+        playCinematicChord();
+      }
+    }
+
+    function switchView(viewName) {
+      document.getElementById('viewVideo').classList.add('hidden');
+      document.getElementById('viewAds').classList.add('hidden');
+      document.getElementById('viewScript').classList.add('hidden');
+      document.getElementById('viewProposal').classList.add('hidden');
+
+      const inactiveTab = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition";
+      const activeTab = "px-3 py-1.5 rounded-lg bg-orange-600 text-white font-semibold shadow-sm transition";
+
+      document.getElementById('tabVideo').className = inactiveTab;
+      document.getElementById('tabAds').className = inactiveTab;
+      document.getElementById('tabScript').className = inactiveTab;
+      document.getElementById('tabProposal').className = inactiveTab;
+
+      if (viewName === 'video') {
+        document.getElementById('viewVideo').classList.remove('hidden');
+        document.getElementById('tabVideo').className = activeTab;
+      } else if (viewName === 'ads') {
+        document.getElementById('viewAds').classList.remove('hidden');
+        document.getElementById('tabAds').className = activeTab;
+      } else if (viewName === 'script') {
+        document.getElementById('viewScript').classList.remove('hidden');
+        document.getElementById('tabScript').className = activeTab;
+      } else if (viewName === 'proposal') {
+        document.getElementById('viewProposal').classList.remove('hidden');
+        document.getElementById('tabProposal').className = activeTab;
+      }
+    }
+
+    function copyPitchEmail() {
+      const emailText = `Subject: Creative Concept & Video Pitch: Syracuse "It's All Yours" Campaign\n\nHi Syracuse Marketing Team,\n\nI developed an interactive 60-second marketing video concept crafted directly from your flagship digital messaging at syracuse.edu.\n\nIt highlights Syracuse's 13 colleges, $571M+ financial aid support, #10 Study Abroad ranking, and Orange Works innovation.\n\nCheck out the interactive reel and full script at the campaign portal!`;
+      navigator.clipboard.writeText(emailText).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.textContent = "✓ Copied to Clipboard!";
+        setTimeout(() => { btn.textContent = "📋 Copy Pitch Email"; }, 2500);
+      });
+    }
+
+    // Initialize initial scene
+    window.addEventListener('DOMContentLoaded', () => {
+      renderScene(0, false);
+    });
+  </script>
+</body>
+</html>
